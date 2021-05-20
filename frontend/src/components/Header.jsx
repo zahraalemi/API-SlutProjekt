@@ -1,4 +1,3 @@
-import Slide from '../productsimages/Hero-2.jpg'
 
 const Header = () =>{
  return( 
@@ -18,7 +17,7 @@ const Header = () =>{
             <div className="category-box">category</div>
         </div>
         <div className="slidebar">
-            <img src={Slide} alt="" width="100%"/>
+            <img src="images/Hero-2.jpg" alt="" width="100%"/>
         </div>
     </div>
  )

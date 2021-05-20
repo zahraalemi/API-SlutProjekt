@@ -1,21 +1,20 @@
 import {Switch, Route} from 'react-router-dom';
 import Product from './Products';
-import Skateboard from './categorys/Skateboard';
-import Hoodie from './categorys/Hoodie';
-import Caps from './categorys/Caps';
-import Tshirt from './categorys/T-shirt';
-import SingelProduct from './categorys/Singleproduct';
+import ProductByCategory from './ProductByCategory';
+import SingelProduct from './SingelProduct';
+import SignUp from './member/Signup';
+import ShoppingCart from './Shoppingcart';
 
 const Menu = ()=>{
     return(
         <div>
             <Switch>
                 <Route exact path="/" component={Product}></Route>
-                <Route path="/skateboard" component={Skateboard}></Route>
-                <Route path="/hoodie" component={Hoodie}></Route>
-                <Route path="/t-shirt" component={Tshirt}></Route>
-                <Route path="/caps" component={Caps}></Route>
-                <Route path="/all" component={SingelProduct}></Route>
+                <Route exact path="/signup" component={SignUp}></Route>
+                <Route exact path="/cart" component={ShoppingCart}></Route>
+                <Route exact path="/:category" component={ProductByCategory}></Route>
+                <Route exact path="/singelproduct/:name" component={SingelProduct}></Route>
+                
             </Switch>
         </div>
     )
