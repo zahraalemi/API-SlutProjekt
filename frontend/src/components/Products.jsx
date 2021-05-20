@@ -10,16 +10,16 @@ const Products = () =>{
         .then(res => setProducts(res.data))
     },[])
 
-    const addToCatt = (product) =>{
+    /* const addToCatt = (product) =>{
         console.log(product)
-        axios.post("/api/addtoCart", {
+        axios.post("/api/products/addtoCart", {
             name:product.name,
             price:product.price,
             image:product.image,
             quantity:1
 
         });
-    }
+    } */
 return(
     <div>
         <h3>Best Selling</h3>
@@ -27,7 +27,7 @@ return(
             {products && products.map((item,i) =>{
                 return(
                     <div key={i} >
-                <Link to={'/singelproduct/' + item.name}>
+                <Link to={'/singleproduct/' + item.name}>
                     <li className="product-card"> 
                     
                     <img src={item.coverimage} alt="" className="image-box"/>
@@ -35,7 +35,7 @@ return(
                     
                     <div className="product-price">Price : {item.price} :-</div>
                     </li>
-                    <button onClick={addToCatt(item)}>add to cart</button>
+                    {/* <button onClick={addToCatt(item)}>add to cart</button> */}
                 </Link>
                 
                 </div>
