@@ -44,3 +44,7 @@ ul{
   flex-wrap: wrap;
   
 }
+.image-box-cart{
+  width: 60px;
+  height: 60px;
+}

@@ -47,25 +47,27 @@ export const getCategory = async (req,res)=>{
     })
     res.send(productsArray)
 }
-export const getProductById = async (req,res)=>{
+export const getOneProduct = async (req, res) =>{
     const product = await products.get();
     const productsArray = [];
-    product.forEach(item => {
-        if(req.params.name ==item.data().name){
+    product.forEach(item =>{
+        if(req.params.name == item.data().name){
             const productName = item.data().name;
             const productCategory = item.data().category;
             const productPrice = item.data().price;
             const productImage = item.data().image;
             const productCoverImage = item.data().coverImage;
             const productDescription = item.data().description;
-        productsArray.push({
-            name: productName,
-            category : productCategory,
-            price : productPrice,
-            description: productDescription,
-            images : productImage,
-            coverimage : productCoverImage
-        })
+            const productQty = item.data().productQty
+            productsArray.push({
+                name: productName,
+                category : productCategory,
+                price : productPrice,
+                description: productDescription,
+                images : productImage,
+                coverimage : productCoverImage,
+                Qty: productQty
+            })
         }
         
     })
