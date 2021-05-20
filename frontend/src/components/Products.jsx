@@ -11,7 +11,6 @@ const Products = () =>{
     },[])
 
     const addToCatt = (product) =>{
-        console.log(product)
         axios.post("/api/addtoCart", {
             name:product.name,
             price:product.price,
@@ -25,6 +24,7 @@ return(
         <h3>Best Selling</h3>
         <ul className="products-box">
             {products && products.map((item,i) =>{
+                
                 return(
                     <div key={i} >
                 <Link to={'/singelproduct/' + item.name}>

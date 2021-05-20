@@ -75,3 +75,21 @@ export const signUp = (req,res) =>{
                 window.location.assign("/profile");
               }); */ 
 }
+
+export const login = (req,res)=>{
+  const user = {
+    email: req.body.email,
+    password : req.body.password
+  };
+  firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+  .then(data =>{
+    return data.getIdToken();
+  })
+  .then(token=>{
+    return res.json({ token });
+  })
+  .catch(err =>{
+    console.log(err);
+    return res.status(500).json({ error: err.code })
+  })
+}
