@@ -9,7 +9,7 @@ const ShoppingCart =() =>{
         .then(res => setProducts(res.data))
         
         console.log(products)
-    },[])
+    },[products])
 
     const[qty, setQty] = useState()
     
@@ -35,10 +35,10 @@ const ShoppingCart =() =>{
     const handleRemove =(id) =>{
         products.forEach(item=>{
             if(item.name === id){
-                axios.delete(`/api/products/remove/${id}`)
-                
+                axios.delete(`/api/products/remove/${id}`) 
             }
         })
+        //setProducts(products)
         
     }
     

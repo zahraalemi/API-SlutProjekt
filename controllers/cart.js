@@ -28,7 +28,6 @@ export const getCartProducts = async (req, res) =>{
 
 export const addProductsToCart = async (req,res) =>{
     let data = req.body;
-    console.log(data)
     await productsInCart.doc().set(data)
     res.send(`added new product`)
     
@@ -43,29 +42,36 @@ export const addQty = async (req, res) =>{
 }
 
 export const removeFromCart = async (req,res) =>{
-    /* const id = req.params.id
-    const product = await productsInCart.get()
-    product.forEach(item=>{
-        const name = item.data().name
-        if(id == name){
-            const itemtodelete = item.data()
-            console.log(itemtodelete.uid)
-        }
-    }) */
+    let productid = req.params.id;
+
+    let removedProduct = '' 
     productsInCart.get().then(function (querySnapshot){
-        let removedProduct = ''
+        
         querySnapshot.forEach(function (doc){
             const product = doc.data();
             product.id = doc.id
-            removedProduct = doc.id
             console.log(doc.id)
+            if(productid === product.name){
+                removedProduct = doc.id
+                console.log('hej')
+            }
+            return removedProduct
+            
+            
             
         })
-        return removedProduct
         
-    })
-    const producttoremove = await productsInCart.doc(removedProduct)
-       await producttoremove.delete()
+        
+        //return removedProduct
+        
+    }).then(() => removeproduct())
+    
+    const removeproduct = async (req,res) =>{
+        const producttoremove = await productsInCart.doc(removedProduct)
+        console.log(producttoremove)
+        
+         await producttoremove.delete()
+    }
 
       
 
