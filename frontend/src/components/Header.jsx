@@ -1,25 +1,37 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingBag, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router-dom';
 
 const Header = () =>{
  return( 
-    <div className="container">
-        <div className="topbar">
-            <div className="left-box">
-                <div className="menu">menu</div>
+     <div className="header">
+         <div className="left-header">
+             <div className="logo">
+                 <img className="sinus-logo" src="images/sinus-logo-landscape.svg" alt="" />
+             </div>
+         </div>
+         <div className="menu">
+            <ul className="category-menu">
+                <li><Link className="link-style" to={"/skateboard"}>Skateboard</Link></li>
+                <li><Link className="link-style" to={"/T-shirt"}>T-shirt</Link></li>
+                <li><Link className="link-style" to={"/hoodie"}>Hoodie</Link></li>
+                <li><Link className="link-style" to={"/caps"}>Caps</Link></li>
+                <li><Link className="link-style" to={"/wheel"}>Wheel</Link></li>
+            </ul>
+        </div>
+        <div className="right-header">
+            <div className="member-box">
+                <Link to={"/login"}>
+                    <FontAwesomeIcon icon={faUserCircle} />
+                </Link>
+                </div>
+            <div className="basket-box">
+                <Link to={"/cart"}>
+                    <FontAwesomeIcon icon={faShoppingBag} />
+                </Link>
             </div>
-            <div className="right-box">
-                <div className="member">login</div>
-                <div className="basket">basket</div>
-            </div>
         </div>
-        <div className="logobar">
-            <div className="logo-box">logo</div>
-            <div className="search-box">search</div>
-            <div className="category-box">category</div>
-        </div>
-        <div className="slidebar">
-            <img src="images/Hero-2.jpg" alt="" width="100%"/>
-        </div>
-    </div>
+     </div>
  )
 }
 

@@ -67,34 +67,40 @@ const SingleProduct = () =>{
      
     return(
         <div>
-            <h3>Product</h3>
-            <ul className="single-products-box">
-                {products && products.map((item,i) =>{
-                    return(
-                    <li key={i}  className="product-card single"> 
-                     {/* {item.images && item.images.map(pic =>{
-                        return <img src={pic} alt="" className="image-box"/>
-                    })} */}
-                    
-                    <img src={item.coverimage} alt="" className="image-box"/>
-                    <div className="info">
-                    <div className="product-name">{item.name}</div>
-                    <div className="product-category">Category : {item.category}</div>
-                    <div className="product-price">Price : {item.price} :-</div>
-                    <div className="product-description">Description: {item.description}</div>
-                    {/* <div className="product-images">Images: {item.images}</div> */}
-                    <div className="qty">
-                    <input  type="number" value={qty} onChange={handleChange}></input>
-                       
-                    
-                    </div>
-                    <button onClick={handleAddToCart} className="addToCart">Add to Cart</button>
-                    </div>
-                   
-                    </li> 
-                    )
-                })}
-            </ul>
+            <div className="middle-box">
+                <div className="left-box" style={{backgroundImage: "url(/images/sinus-tshirt-purple.png)"}}></div>
+                <div className="right-box">
+                <h3>Product</h3>
+                    <ul className="single-products-box">
+                        {products && products.map((item,i) =>{
+                            return(
+                            <li key={i}  className="product-card single"> 
+                            {/* {item.images && item.images.map(pic =>{
+                                return <img src={pic} alt="" className="image-box"/>
+                            })} */}
+                            
+                            <img src={item.coverimage} alt="" className="image-box"/>
+                            <div className="info">
+                            <div className="product-name">{item.name}</div>
+                            <div className="product-category">Category : {item.category}</div>
+                            <div className="product-price">Price : {item.price} :-</div>
+                            <div className="product-description">Description: {item.description}</div>
+                            {/* <div className="product-images">Images: {item.images}</div> */}
+                            <div className="qty">
+                            <input  type="number" value={qty} onChange={handleChange}></input>
+                            
+                            
+                            </div>
+                            <button onClick={handleAddToCart} className="addToCart">Add to Cart</button>
+                            </div>
+                        
+                            </li> 
+                            )
+                        })}
+                    </ul>
+                </div>
+            </div>
+            
             
         </div>
     )

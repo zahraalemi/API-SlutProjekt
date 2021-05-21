@@ -11,7 +11,10 @@ const ProductByCategory = () =>{
     })
 return(
     <div>
-        <ul className="products-box">
+        <div className="middle-box">
+            <div className="left-box" style={{backgroundImage: "url(/images/basket.jpg)"}}></div>
+            <div className="right-box">
+            <ul className="products-box">
             {products && products.map((item,i) =>{
                 return(
                 <li key={i} className="product-card"> 
@@ -30,6 +33,11 @@ return(
                 )
             })}
         </ul>
+            </div>
+        </div>
+
+
+        
     </div>
 )
 }

@@ -45,35 +45,6 @@ export const signUp = (req,res) =>{
       return res.status(500).json({error: err.code});
       }
     })
-
-
-
-
-    
-  
-    /* firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
-
-    firebase.auth()
-    .createUserWithEmailAndPassword(newUser.email, newUser.password)
-              .then(({ user }) => {
-                return user.getIdToken().then((idToken) => {
-                  return fetch("/addMember", {
-                    method: "POST",
-                    headers: {
-                      Accept: "application/json",
-                      "Content-Type": "application/json",
-                      "CSRF-Token": Cookies.get("XSRF-TOKEN"),
-                    },
-                    body: JSON.stringify({ idToken }),
-                  });
-                });
-              })
-              .then(() => {
-                return firebase.auth().signOut();
-              })
-              .then(() => {
-                window.location.assign("/profile");
-              }); */ 
 }
 
 export const login = (req,res)=>{
@@ -97,4 +68,11 @@ export const login = (req,res)=>{
     }
   
   })
+}
+
+export const addUserDetails = (req,res) =>{
+  console.log(req.body)
+  user.get()
+  .then(data => console.log(data.user.getIdToken()))
+  .catch(err => { console.log(err)});
 }

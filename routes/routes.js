@@ -1,7 +1,7 @@
 import express from 'express';
 import {getProducts,getCategory, getOneProduct} from '../controllers/products.js'
 const router = express.Router();
-import {signUp,login} from '../controllers/member.js';
+import {signUp, login, addUserDetails} from '../controllers/member.js';
 import { addProductsToCart, addQty, getCartProducts, removeFromCart } from '../controllers/cart.js';
 
 router.get("/", getProducts)
@@ -14,6 +14,7 @@ router.delete("/remove/:id", removeFromCart)
 
 router.post("/signup", signUp)
 router.post("/login", login)
+router.patch("/addprofile", addUserDetails)
 
 
 export default router

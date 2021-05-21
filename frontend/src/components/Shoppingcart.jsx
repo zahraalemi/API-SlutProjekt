@@ -7,21 +7,24 @@ const ShoppingCart =() =>{
     useEffect(()=>{
         axios.get('/api/products/cart')
         .then(res => setProducts(res.data))
-        },[products])
+        
+        /* console.log(products) */
+    },[])
 
     const[qty, setQty] = useState()
     
-    const handleChange = (e) =>{
+    /* const handleChange = (e) =>{
         const value = e.target.value;
         console.log(value)
         setQty(value)
         axios.patch('/api/products/cart/addqty',{
             productQty: qty
         })
-    }
-    const addQty = () =>{
-        let newQty = qty 
-        setQty(newQty + 1) 
+    } */
+    const addQty = (newQty) =>{
+        /* let number = Number(newQty)  */
+        setQty(newQty ++) 
+        console.log(qty)
         
     }
    /*  const removeQty = () =>{
@@ -33,50 +36,47 @@ const ShoppingCart =() =>{
     const handleRemove =(id) =>{
         products.forEach(item=>{
             if(item.name === id){
-                axios.delete(`/api/products/remove/${id}`)
-                
+                axios.delete(`/api/products/remove/${id}`) 
             }
         })
+        //setProducts(products)
         
     }
     
 
     return(
         <div>
-            <h2>shoppingbag</h2>
+            <div className="middle-box">
+                <div className="left-box" style={{backgroundImage: "url(/images/basket.jpg)"}}></div>
+                <div className="right-box">
+                    <h2>shoppingbag</h2>
+                    <ul className="cart-box">
+                    {products && products.map((item,i) =>{
+
+                        return(
+                        <li key={i} className="product-card cart"> 
+                            <div>
+                                <button onClick={() => handleRemove(item.name)}>remove product</button>
+                                <img src={item.coverimage} alt="" className="image-box-cart"/>
+                            </div>
+                            <div className="cart-info">
+                                <div className="product-name-cart">Name : {item.name}</div>
+                                {/* <div className="product-category">Category : {item.category}</div> */}
+                                <div className="product-price-cart">Price : {item.price} :-</div>
+                                <div className="cart-qty">Qty : {item.productQty}</div>
+                                <button onClick={()=> addQty(item.productQty)}>+</button>
+                            
+                            </div>
+                        
+                        
+
+                        </li>
+                        )
+                    })}
+                </ul>
+                </div>
+            </div>
             
-            <ul className="cart-box">
-            {products && products.map((item,i) =>{
-
-                return(
-                <li key={i} className="product-card cart"> 
-                {/* {item.images && item.images.map(pic =>{
-                    return <img src={pic} alt="" className="image-box"/>
-                })} */}
-                <div>
-                <button onClick={() => handleRemove(item.name)}>remove product</button>
-                <img src={item.coverimage} alt="" className="image-box-cart"/>
-                </div>
-                <div className="cart-info">
-                <div className="product-name-cart">Name : {item.name}</div>
-                {/* <div className="product-category">Category : {item.category}</div> */}
-                <div className="product-price-cart">Price : {item.price} :-</div>
-                <div className="cart-qty">Qty : {qty}</div>
-                <button onClick={addQty}>+</button>
-                {/* <button onClick={removeQty}>-</button> */}
-                  <div className="qty">
-                    <input  type="number" value={item.productQty} onChange={handleChange}></input>
-                    
-                    </div>
-                </div>
-                {/* <div className="product-description">Description: {item.description}</div> */}
-                {/* <div className="product-images">Images: {item.images}</div> */}
-                
-
-                </li>
-                )
-            })}
-        </ul>
         </div>
     )
 }

@@ -27,26 +27,32 @@ const SignUp = () =>{
     
 return(
     <div>
-        <form onSubmit={signUp}>
-            <div>
-                <label>Email</label>
-                <input type="text" name="email" onChange={(e)=>setMail(e.target.value)}/>
+        <div className="middle-box">
+            <div className="left-box" style={{backgroundImage: "url(/images/basket.jpg)"}}></div>
+            <div className="right-box">
+                <form onSubmit={signUp}>
+                    <div>
+                        <label>Email</label>
+                        <input type="text" name="email" onChange={(e)=>setMail(e.target.value)}/>
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input type="password" name="password" onChange={(e)=>setPass(e.target.value)}/>
+                    </div>
+                    <div>
+                        <label>Confirm Password</label>
+                        <input type="password" name="repassword" onChange={(e)=>setRepass(e.target.value)}/>
+                    </div>
+                    <div>
+                        <label>Handle</label>
+                        <input type="text" name="handle" onChange={(e)=>setHandle(e.target.value)}/>
+                    </div>
+                
+                    <button>Sign up</button>
+                </form> 
             </div>
-            <div>
-                <label>Password</label>
-                <input type="password" name="password" onChange={(e)=>setPass(e.target.value)}/>
-            </div>
-            <div>
-                <label>Confirm Password</label>
-                <input type="password" name="repassword" onChange={(e)=>setRepass(e.target.value)}/>
-            </div>
-            <div>
-                <label>Handle</label>
-                <input type="text" name="handle" onChange={(e)=>setHandle(e.target.value)}/>
-            </div>
-         
-          <button>Sign up</button>
-        </form> 
+        </div>
+        
     </div>
 )
 }

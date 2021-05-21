@@ -22,27 +22,34 @@ const Products = () =>{
     } */
 return(
     <div>
-        <h3>Best Selling</h3>
-        <ul className="products-box">
-            {products && products.map((item,i) =>{
+        <div className="middle-box">
+            <div className="left-box" style={{backgroundImage: "url(/images/skateboard.jpg)"}}>
                 
-                return(
-                    <div key={i} >
-                <Link to={'/singleproduct/' + item.name}>
-                    <li className="product-card"> 
-                    
-                    <img src={item.coverimage} alt="" className="image-box"/>
-                    <div className="product-name">{item.name}</div>
-                    
-                    <div className="product-price">Price : {item.price} :-</div>
-                    </li>
-                    {/* <button onClick={addToCatt(item)}>add to cart</button> */}
-                </Link>
-                
-                </div>
-                )
-            })}
-        </ul>
+            </div>
+            <div className="right-box">
+                <h3>Best Selling</h3>
+                <ul className="products-box">
+                    {products && products.map((item,i) =>{
+                        
+                        return(
+                            <div key={i} >
+                        <Link to={'/singleproduct/' + item.name}>
+                            <li className="product-card"> 
+                            
+                            <img src={item.coverimage} alt="" className="image-box"/>
+                            <div className="product-name">{item.name}</div>
+                            
+                            <div className="product-price">Price : {item.price} :-</div>
+                            </li>
+                            {/* <button onClick={addToCatt(item)}>add to cart</button> */}
+                        </Link>
+                        
+                        </div>
+                        )
+                    })}
+                </ul>
+            </div>
+        </div>
     </div>
 )
 }
