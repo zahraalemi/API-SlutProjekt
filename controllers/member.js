@@ -83,13 +83,18 @@ export const login = (req,res)=>{
   };
   firebase.auth().signInWithEmailAndPassword(user.email, user.password)
   .then(data =>{
-    return data.getIdToken();
+    return data.user.getIdToken();
   })
   .then(token=>{
     return res.json({ token });
   })
   .catch(err =>{
     console.log(err);
-    return res.status(500).json({ error: err.code })
+    if(err.code === 'auth/wrong-password'){
+      return res.status(403).json({ general: 'Wrong credentials, please try again'});
+    }else{
+    return res.status(500).json({ error: err.code })    
+    }
+  
   })
 }

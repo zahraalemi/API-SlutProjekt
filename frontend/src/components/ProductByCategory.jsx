@@ -8,7 +8,7 @@ const ProductByCategory = () =>{
     useEffect(()=>{
         axios.get(`/api/products/${category}`)
         .then(res => setProducts(res.data))
-    },[])
+    })
 return(
     <div>
         <ul className="products-box">

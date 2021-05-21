@@ -8,18 +8,15 @@ import {useParams, useHistory} from 'react-router-dom';
 
 const SingleProduct = () =>{
     const {name} = useParams();
-    const history = useHistory()
-
-    const [qty, setQty] = useState(1)
-
+    const history = useHistory();
+    const [qty, setQty] = useState(1);
     const[products,setProducts] = useState();
 
     useEffect(()=>{
         axios.get(`/api/products/singleproduct/${name}`)
         .then(res => setProducts(res.data))
         .catch(error => {console.log(error)})
-        
-        console.log(products)
+
     },[])
 
     

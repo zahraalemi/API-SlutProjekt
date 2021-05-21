@@ -7,9 +7,7 @@ const ShoppingCart =() =>{
     useEffect(()=>{
         axios.get('/api/products/cart')
         .then(res => setProducts(res.data))
-        
-        console.log(products)
-    },[])
+        },[products])
 
     const[qty, setQty] = useState()
     
