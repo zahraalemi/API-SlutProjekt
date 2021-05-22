@@ -24,17 +24,17 @@ const SignUp = () =>{
     
 return(
     <div>
+       
         <div className="middle-box">
             <div className="left-box" style={{backgroundImage: "url(/images/basket.jpg)"}}></div>
             <div className="right-box">
+                <h2>Login</h2>
                 <form onSubmit={login}>
                     <div>
-                        <label>Email</label>
-                        <input type="text" name="email" onChange={(e)=>setMail(e.target.value)}/>
+                        <input placeholder="Email" type="text" name="email" onChange={(e)=>setMail(e.target.value)}/>
                     </div>
                     <div>
-                        <label>Password</label>
-                        <input type="password" name="password" onChange={(e)=>setPass(e.target.value)}/>
+                        <input placeholder="Password" type="password" name="password" onChange={(e)=>setPass(e.target.value)}/>
                     </div>
                     <button>Login</button>
                 </form> 

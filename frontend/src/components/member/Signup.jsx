@@ -1,6 +1,7 @@
 import React,{ useState } from "react";
 import axios from 'axios';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+
 
 const SignUp = () =>{
     let history = useHistory();
@@ -30,22 +31,19 @@ return(
         <div className="middle-box">
             <div className="left-box" style={{backgroundImage: "url(/images/basket.jpg)"}}></div>
             <div className="right-box">
+                <h2>Login</h2>
                 <form onSubmit={signUp}>
                     <div>
-                        <label>Email</label>
-                        <input type="text" name="email" onChange={(e)=>setMail(e.target.value)}/>
+                        <input placeholder="Enter Your Email" type="text" name="email" onChange={(e)=>setMail(e.target.value)}/>
                     </div>
                     <div>
-                        <label>Password</label>
-                        <input type="password" name="password" onChange={(e)=>setPass(e.target.value)}/>
+                        <input placeholder="Enter Your Password" type="password" name="password" onChange={(e)=>setPass(e.target.value)}/>
                     </div>
                     <div>
-                        <label>Confirm Password</label>
-                        <input type="password" name="repassword" onChange={(e)=>setRepass(e.target.value)}/>
+                        <input placeholder="Enter Your Confirm Password" type="password" name="repassword" onChange={(e)=>setRepass(e.target.value)}/>
                     </div>
                     <div>
-                        <label>Handle</label>
-                        <input type="text" name="handle" onChange={(e)=>setHandle(e.target.value)}/>
+                        <input  placeholder="Enter Handle" type="text" name="handle" onChange={(e)=>setHandle(e.target.value)}/>
                     </div>
                 
                     <button>Sign up</button>

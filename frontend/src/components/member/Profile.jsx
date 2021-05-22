@@ -66,16 +66,13 @@ const Profile = () =>{
                     <h2>Profile</h2>
                     <form onSubmit={submitProfile}>
                         <div>
-                            <label>Name</label>
-                            <input type="text" name="name" onChange={(e)=>setName(e.target.value)}/>
+                            <input placeholder="Name" type="text" name="name" onChange={(e)=>setName(e.target.value)}/>
                         </div>
                         <div>
-                            <label>address</label>
-                            <textarea type="text" name="address" onChange={(e)=>setAddress(e.target.value)}/>
+                            <textarea placeholder="Address" type="text" name="address" onChange={(e)=>setAddress(e.target.value)}/>
                         </div>
                         <div>
-                            <label>City</label>
-                            <input type="text" name="name" onChange={(e)=>setCity(e.target.value)}/>
+                            <input placeholder="City" type="text" name="name" onChange={(e)=>setCity(e.target.value)}/>
                         </div>
                         <hr />
                         <h4>Card Details</h4>
