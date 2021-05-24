@@ -9,7 +9,6 @@ const Profile = () =>{
     useEffect(()=>{
         axios.get(`/api/products/profile/${userId}`)
         .then(res => setUser(res.data))
-        console.log(user)
     },[])
 
     const [ name,setName ] = useState();

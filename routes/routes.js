@@ -8,13 +8,13 @@ router.get("/", getProducts)
 router.get("/singleproduct/:name", getOneProduct)
 router.get("/cart", getCartProducts)
 router.post("/addtocart", addProductsToCart)
-router.patch("/addqty", addQty)
+router.patch("/addqty/:name", addQty)
 router.get("/:category", getCategory)
 router.delete("/remove/:id", removeFromCart)
 
 router.post("/signup", signUp)
 router.post("/login", login)
-router.patch("/profile/addDetails", addUserDetails)
+router.patch("/profile/addDetails/:userId", addUserDetails)
 router.get("/profile/:userId", userDetails)
 
 

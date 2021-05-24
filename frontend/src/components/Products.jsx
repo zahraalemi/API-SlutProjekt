@@ -24,9 +24,9 @@ return(
     <div>
         <div className="middle-box">
             <div className="left-box" style={{backgroundImage: "url(/images/skateboard.jpg)"}}>
-                <div class="title-box">
-                    <h2 class="rotate title">Welcome to</h2>
-                    <h2 class="title">Sinus WebShop</h2>
+                <div className="title-box">
+                    <h2 className="rotate title">Welcome to</h2>
+                    <h2 className="title">Sinus WebShop</h2>
                 </div>
             </div>
             <div className="right-box">

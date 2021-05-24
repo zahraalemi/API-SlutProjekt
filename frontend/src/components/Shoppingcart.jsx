@@ -8,38 +8,49 @@ const ShoppingCart =() =>{
         axios.get('/api/products/cart')
         .then(res => setProducts(res.data))
         
-        /* console.log(products) */
     },[])
-
-    const[qty, setQty] = useState()
     
-    /* const handleChange = (e) =>{
-        const value = e.target.value;
-        console.log(value)
-        setQty(value)
-        axios.patch('/api/products/cart/addqty',{
-            productQty: qty
+    const addQty = (value) =>{
+        products.forEach(item =>{
+            if(value.name === item.name){
+                item.productQty ++
+                
+                axios.patch(`/api/products/addqty/${value.name}`,{
+                   
+                    productQty: item.productQty
+                })
+                console.log(products)
+            }
+           
         })
-    } */
-    const addQty = (newQty) =>{
-        /* let number = Number(newQty)  */
-        setQty(newQty ++) 
-        console.log(qty)
-        
+          
     }
-   /*  const removeQty = () =>{
-        axios.patch('/api/products/removeqty'),{
-            setQty(qty = qty - 1)
+
+   const removeQty = (value) =>{
+
+    products.forEach(item =>{
+        if(value.name === item.name){
+            item.productQty = value.productQty - 1
+            
+            axios.patch(`/api/products/addqty/${value.name}`,{
+                   
+                productQty: item.productQty
+            })
+            console.log(products)
         }
-    } */
+       
+    })
+        
+    }  
 
     const handleRemove =(id) =>{
         products.forEach(item=>{
             if(item.name === id){
                 axios.delete(`/api/products/remove/${id}`) 
+                let newCartArray = products.filter((el) => el.name !== id)
+                setProducts(newCartArray)
             }
         })
-        //setProducts(products)
         
     }
     
@@ -64,7 +75,8 @@ const ShoppingCart =() =>{
                                 {/* <div className="product-category">Category : {item.category}</div> */}
                                 <div className="product-price-cart">Price : {item.price} :-</div>
                                 <div className="cart-qty">Qty : {item.productQty}</div>
-                                <button onClick={()=> addQty(item.productQty)}>+</button>
+                                <button onClick={()=> addQty(item)}>+</button>
+                                <button onClick={() => removeQty(item)}>-</button>
                             
                             </div>
                         

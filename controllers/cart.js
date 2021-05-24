@@ -36,9 +36,40 @@ export const addProductsToCart = async (req,res) =>{
 } 
 
 export const addQty = async (req, res) =>{
-    const qty = await req.body
-    productsInCart.update(qty)
-    res.end()
+    let cartProducts = await productsInCart.get()
+    let data = await req.body.productQty
+    let productid = req.params.name;
+
+    let qtyProduct = '' 
+    productsInCart.get().then(function (querySnapshot){
+        
+        querySnapshot.forEach(function (doc){
+            const product = doc.data();
+            product.id = doc.id
+            if(productid === product.name){
+                qtyProduct = doc.id 
+            }
+            return qtyProduct
+             
+            
+        })
+        const updateProduct = async (req, res) =>{
+            await productsInCart.doc(qtyProduct).update({
+                "productQty": data
+            }) 
+            
+        }
+        cartProducts.forEach(item=>{
+            if(req.params.name === item.data().name){
+                updateProduct()
+              
+            }
+          
+        })
+        
+        
+    })
+   
 }
 
 export const removeFromCart = async (req,res) =>{
@@ -50,10 +81,10 @@ export const removeFromCart = async (req,res) =>{
         querySnapshot.forEach(function (doc){
             const product = doc.data();
             product.id = doc.id
-            /* console.log(doc.id) */
+            
             if(productid === product.name){
                 removedProduct = doc.id
-                /* console.log('hej') */
+                
             }
             return removedProduct
             
@@ -62,13 +93,10 @@ export const removeFromCart = async (req,res) =>{
         })
         
         
-        //return removedProduct
-        
     }).then(() => removeproduct())
     
     const removeproduct = async (req,res) =>{
         const producttoremove = await productsInCart.doc(removedProduct)
-        /* console.log(producttoremove) */
         
          await producttoremove.delete()
     }

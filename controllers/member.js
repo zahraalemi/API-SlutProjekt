@@ -31,7 +31,7 @@ export const signUp = (req,res) =>{
         createDate: new Date().toISOString(),
         userId
       };
-      return users.doc(newUser.handle).set(userCredentials)
+      return users.doc(userId).set(userCredentials)
     
     })
     .then(() =>{
@@ -70,7 +70,8 @@ export const login = (req,res)=>{
   })
 }
 export const userDetails = async (req,res) =>{
-     const user = await users.get();
+    
+    const user = await users.get();
     const userArray = [];
     user.forEach(item =>{
       if(req.params.userId == item.data().userId){
@@ -101,13 +102,11 @@ export const userDetails = async (req,res) =>{
 }
 
 export const addUserDetails = async (req,res) =>{
-   console.log(req.params.id)
-  
-/* 
-    const id = req.params.id;
+
+    const id = req.params.userId;
     const newDetails = req.body;
     const user = users.doc(id);
     await user.update(newDetails)
 
-    res.send(`Taske Updated`) */
+    res.send(`Taske Updated`) 
 }

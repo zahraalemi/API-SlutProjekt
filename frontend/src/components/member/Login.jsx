@@ -1,12 +1,12 @@
 import React,{ useState } from "react";
 import axios from 'axios';
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 const SignUp = () =>{
     let history = useHistory();
     const [mail,setMail] = useState();
     const [pass,setPass] = useState();
-
+    const {userId} = useParams()
     
     const login = (e) =>{
         
@@ -16,7 +16,7 @@ const SignUp = () =>{
             password: pass,
         }).then((res)=>{
             console.log(res.data);
-            history.push("/profile");
+            history.push(`/profile/${userId}`);
         }).catch((err)=>{
             console.log(err.response.data)
         })
