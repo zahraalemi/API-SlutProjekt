@@ -24,16 +24,19 @@ return(
     <div>
         <div className="middle-box">
             <div className="left-box" style={{backgroundImage: "url(/images/skateboard.jpg)"}}>
-                
+                <div class="title-box">
+                    <h2 class="rotate title">Welcome to</h2>
+                    <h2 class="title">Sinus WebShop</h2>
+                </div>
             </div>
             <div className="right-box">
-                <h3>Best Selling</h3>
+                <div className="title-page">Products</div>
                 <ul className="products-box">
                     {products && products.map((item,i) =>{
                         
                         return(
                             <div key={i} >
-                        <Link to={'/singleproduct/' + item.name}>
+                        <Link className="product-link-box" to={'/singleproduct/' + item.name}>
                             <li className="product-card"> 
                             
                             <img src={item.coverimage} alt="" className="image-box"/>

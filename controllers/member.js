@@ -69,10 +69,45 @@ export const login = (req,res)=>{
   
   })
 }
+export const userDetails = async (req,res) =>{
+     const user = await users.get();
+    const userArray = [];
+    user.forEach(item =>{
+      if(req.params.userId == item.data().userId){
+        const userEmail = item.data().email;
+        const userName = item.data().name;
+        const userAddress = item.data().address;
+        const userCity = item.data().city;
+        const userCardNumber = item.data().cardNo;
+        const userCardName = item.data().cardName;
+        const userCardExpDate = item.data().expCard;
+        const userCardCvv = item.data().cvvCard;
+        const userCardVendor = item.data().vendorCard;
+        userArray.push({
+          email: userEmail,
+          name: userName,
+          address : userAddress,
+          city: userCity,
+          cardNumber : userCardNumber,
+          cardName : userCardName,
+          cardExpDate : userCardExpDate,
+          cardCvv : userCardCvv,
+          cardVendor : userCardVendor
+        })
+      }
+    })
+    res.send(userArray)
 
-export const addUserDetails = (req,res) =>{
-  console.log(req.body)
-  user.get()
-  .then(data => console.log(data.user.getIdToken()))
-  .catch(err => { console.log(err)});
+}
+
+export const addUserDetails = async (req,res) =>{
+   console.log(req.params.id)
+  
+/* 
+    const id = req.params.id;
+    const newDetails = req.body;
+    const user = users.doc(id);
+    await user.update(newDetails)
+
+    res.send(`Taske Updated`) */
 }

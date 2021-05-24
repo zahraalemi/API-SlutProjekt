@@ -1,13 +1,20 @@
-import React,{ useState } from "react";
+import React,{ useState,useEffect } from "react";
 import axios from "axios";
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 const Profile = () =>{
     let history = useHistory();
+    let {userId} = useParams();
+    let [user, setUser] = useState();
+    useEffect(()=>{
+        axios.get(`/api/products/profile/${userId}`)
+        .then(res => setUser(res.data))
+        console.log(user)
+    },[])
 
-    const [name,setName] = useState();
-    const [address,setAddress] = useState();
-    const [city,setCity] = useState();
+    const [ name,setName ] = useState();
+    const [ address,setAddress ] = useState();
+    const [ city,setCity ] = useState();
     const [ number, setNumber] = useState();
     const [ cardName, setCardName] = useState();
     const [ date, setDate] = useState();
@@ -15,16 +22,17 @@ const Profile = () =>{
     const [ vendor, setVendor] = useState();
 
     const submitProfile = () => {
-        const userDetails ={
+        
+        axios.patch(`/api/products/profile/addDetails/${userId}`,{
             name : name,
             address : address,
             city : city,
+            cardNumber : number,
             cardname : cardName,
             carddate: date,
             cardcvv: cvv,
             cardvendor: vendor
-        }
-        axios.post('/api/products/addprofile',userDetails)
+        })
         .then((res)=>{
             console.log(res.data);
             history.push("/");
@@ -64,39 +72,53 @@ const Profile = () =>{
                 <div className="left-box" style={{backgroundImage: "url(/images/basket.jpg)"}}></div>
                 <div className="right-box">
                     <h2>Profile</h2>
+                    
                     <form onSubmit={submitProfile}>
+                        {user && user.map((item,i)=>{
+                            return (
+                                <div key={i}>
+                                    <div>Email : {item.email}</div>
+                                
                         <div>
-                            <input placeholder="Name" type="text" name="name" onChange={(e)=>setName(e.target.value)}/>
+                            <p>Name : {item.name} </p>
+                            <input placeholder="Change Name" type="text" name="name" onChange={(e)=>setName(e.target.value)}/>
                         </div>
                         <div>
-                            <textarea placeholder="Address" type="text" name="address" onChange={(e)=>setAddress(e.target.value)}/>
+                            <p>Address : {item.address}</p>
+                            <textarea placeholder="Change Address" type="text" name="address" onChange={(e)=>setAddress(e.target.value)}/>
                         </div>
                         <div>
+                            <p>City : {item.city} </p>
                             <input placeholder="City" type="text" name="name" onChange={(e)=>setCity(e.target.value)}/>
                         </div>
                         <hr />
                         <h4>Card Details</h4>
                         <div className="card-details">
                         <div>
+                            <p>Card Number : {item.cardNumber} </p>
                             <input type="text" placeholder="Enter Your Card Number"  value={number} /*maxLength={19} onBlur={checkNumberVarible} */ onChange={handleChangeNumber}  />
                         </div>
                         <div>
-                            <input type="text" placeholder="Enter Your Name" onChange={(e)=>setCardName(e.target.value)} /* value={userName} *//>
+                            <p>Card Name : {item.cardName}</p>
+                            <input type="text" placeholder="Enter Your Name" value={cardName} onChange={(e)=>setCardName(e.target.value)} /* value={userName} *//>
                         </div>
                         <div className="dateandcvv-box">
+                            <p>Expire Date : {item.cardExpDate}</p>
                             <input type="text" placeholder="Enter Expire Date"  value={date} onChange={handleChangeDate}/* onBlur={checkExpireVariable} */  />
+                        </div>
+                        <div>
+                            <p>Card CVV : {item.cardCvv}</p>
                             <input type="text" placeholder="Enter Cvv"  value={cvv} onChange={handleChangeCvv}/* onBlur={checkCvvVariable} */ />
                         </div>
                         <div>
-                            <select name="vendor" id="vendor" onChange={(e)=>setVendor(e.target.value)} /* value={vendor} onChange={handleChangeVendor} onBlur={checkDropDownVariable} */ >
-                                <option></option>
-                                <option value="1">Visa</option>
-                                <option value="2">Mastercard</option>
-                                <option value="3">AmericanExpress</option>
-                                <option value="4">Other</option>
-                            </select>
+                            <p>Card Vendor : {item.cardVendor}</p>
+                            <input type="text" name="vendor" id="vendor" value={vendor} onChange={(e)=>setVendor(e.target.value)}/>
+                            
                         </div>
                         </div>
+                        </div>
+                            )
+                        })}
                     <button>Submit</button>
                     </form> 
                 </div>
