@@ -1,6 +1,6 @@
 import React,{ useState } from "react";
 import axios from 'axios';
-import { useHistory } from 'react-router-dom'
+import { useHistory , Link} from 'react-router-dom'
 
 const SignUp = () =>{
     let history = useHistory();
@@ -15,7 +15,7 @@ const SignUp = () =>{
             email: mail,
             password: pass,
         }).then((res)=>{
-            console.log(res.data);
+            console.log(res);
             history.push("/profile");
         }).catch((err)=>{
             console.log(err.response.data)
@@ -36,6 +36,7 @@ return(
                     <div>
                         <input placeholder="Password" type="password" name="password" onChange={(e)=>setPass(e.target.value)}/>
                     </div>
+                    <p><Link to={"/signup"}>You don't have an account?</Link></p>
                     <button>Login</button>
                 </form> 
             </div>

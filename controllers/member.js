@@ -101,13 +101,12 @@ export const userDetails = async (req,res) =>{
 }
 
 export const addUserDetails = async (req,res) =>{
-   console.log(req.params.id)
+   console.log(req.params.userId)
   
 /* 
     const id = req.params.id;
     const newDetails = req.body;
     const user = users.doc(id);
     await user.update(newDetails)
-
     res.send(`Taske Updated`) */
 }
