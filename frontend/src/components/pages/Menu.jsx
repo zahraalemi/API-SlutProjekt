@@ -3,9 +3,9 @@ import Product from './Products';
 import ProductByCategory from './ProductByCategory';
 import SingleProduct from './SingleProduct';
 import ShoppingCart from './Shoppingcart';
-import SignUp from './member/Signup';
-import Profile from './member/Profile';
-import Login from './member/Login';
+import SignUp from '../member/Signup';
+import Profile from '../member/Profile';
+import Login from '../member/Login';
 import { AnimatePresence } from "framer-motion";
 
 const Menu = ()=>{

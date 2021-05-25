@@ -1,8 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBag, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom';
+import React,{useState,useEffect} from 'react';
+import axios from 'axios';
 
 const Header = () =>{
+    
+    const[products,setProducts] = useState();
+    useEffect(()=>{
+        axios.get('/api/products/cart')
+        .then(res => setProducts(res.data.length))
+        
+    },[])
  return( 
      <div className="header">
          <div className="left-header">
@@ -28,7 +37,11 @@ const Header = () =>{
             <div className="basket-box">
                 <Link to={"/cart"}>
                     <FontAwesomeIcon icon={faShoppingBag} />
+                    
                 </Link>
+                <div className="cart-number">
+                    {products}
+                    </div>
             </div>
         </div>
      </div>

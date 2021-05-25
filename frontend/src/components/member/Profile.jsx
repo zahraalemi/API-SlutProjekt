@@ -9,7 +9,7 @@ const Profile = () =>{
     useEffect(()=>{
         axios.get(`/api/products/profile/${userId}`)
         .then(res => setUser(res.data))
-    },[])
+    },[userId])
 
     const [ name,setName ] = useState();
     const [ address,setAddress ] = useState();
@@ -19,10 +19,10 @@ const Profile = () =>{
     const [ date, setDate] = useState();
     const [ cvv, setCvv] = useState();
     const [ vendor, setVendor] = useState();
-
+    
     const submitProfile = () => {
         
-        axios.patch('/api/products/profile/addDetails',{
+        axios.patch(`/api/products/profile/addDetails/${userId}`,{
             name : name,
             address : address,
             city : city,
@@ -32,12 +32,12 @@ const Profile = () =>{
             cardcvv: cvv,
             cardvendor: vendor
         })
-        .then((res)=>{
+        /* .then((res)=>{
             console.log(res.data);
             history.push("/");
         }).catch((err)=>{
             console.log(err)
-        })
+        }) */
     
     }
     const handleChangeNumber = (e) => {
@@ -70,56 +70,82 @@ const Profile = () =>{
             <div className="middle-box">
                 <div className="left-box" style={{backgroundImage: "url(/images/basket.jpg)"}}></div>
                 <div className="right-box">
-                    <h2>Profile</h2>
-                    
-                    <form onSubmit={submitProfile}>
-                        {user && user.map((item,i)=>{
-                            return (
-                                <div key={i}>
-                                    <div>Email : {item.email}</div>
+                    <div className="title-page">Profile</div>
+                    <div className="body-page">
+                        <div className="profile-container">
+                            <div className="details-profile">
+                            {user && user.map((item,i)=>{
+                                    return (
+                                        <div key={i}>
+                                            
+                                            <div className="personla-details">
+                                                <div><b>Email :</b> {item.email}</div>
+                                                <p><b>Name :</b> {item.name} </p>
+                                                <p><b>Address : </b>{item.address}</p>
+                                                <p><b>City : </b>{item.city} </p>
+                                            </div>
+                                            <div className="card-details-box">
+                                                <p className="card-number"> {item.cardNumber} </p>
+                                                <p className="card-name">{item.cardName}</p>
+                                                <p className="date-cvv">
+                                                    <p>
+                                                    EXP : {item.cardExpDate}</p>
+                                                    <p>CVV : {item.cardCvv}</p>
+                                                </p>    
+                                                <p>Vendor : {item.cardVendor}</p>
+                                                
+                                            </div>
+                                        </div>
+                                        )
+                                })}
+                            </div>
+                            <div className="edit-details-profile">
+                                <form onSubmit={submitProfile}>
+                                    
+                                    <div>
+                                    <div>
+                                        
+                                        <input placeholder="Change Name" type="text" name="name" onChange={(e)=>setName(e.target.value)}/>
+                                    </div>
+                                    <div>
+                                    
+                                        <textarea placeholder="Change Address" type="text" name="address" onChange={(e)=>setAddress(e.target.value)}/>
+                                    </div>
+                                    <div>
+                                        
+                                        <input placeholder="City" type="text" name="name" onChange={(e)=>setCity(e.target.value)}/>
+                                    </div>
+                                    <hr />
+                                    <h4>Card Details</h4>
+                                    <div className="card-details">
+                                    <div>
+                                        
+                                        <input type="text" placeholder="Enter Your Card Number"  value={number} /*maxLength={19} onBlur={checkNumberVarible} */ onChange={handleChangeNumber}  />
+                                    </div>
+                                    <div>
+                                        
+                                        <input type="text" placeholder="Enter Your Name" value={cardName} onChange={(e)=>setCardName(e.target.value)} /* value={userName} *//>
+                                    </div>
+                                    <div className="dateandcvv-box">
+                                        
+                                        <input type="text" placeholder="Enter Expire Date"  value={date} onChange={handleChangeDate}/* onBlur={checkExpireVariable} */  />
+                                    </div>
+                                    <div>
+                                        <input type="text" placeholder="Enter Cvv"  value={cvv} onChange={handleChangeCvv}/* onBlur={checkCvvVariable} */ />
+                                    </div>
+                                    <div>
+                                        
+                                        <input type="text" name="vendor" id="vendor" value={vendor} onChange={(e)=>setVendor(e.target.value)}/>
+                                        
+                                    </div>
+                                    </div>
+                                    </div>
                                 
-                        <div>
-                            <p>Name : {item.name} </p>
-                            <input placeholder="Change Name" type="text" name="name" onChange={(e)=>setName(e.target.value)}/>
+                                    <button className="btn">Submit</button>
+                                </form> 
+                            </div>
                         </div>
-                        <div>
-                            <p>Address : {item.address}</p>
-                            <textarea placeholder="Change Address" type="text" name="address" onChange={(e)=>setAddress(e.target.value)}/>
-                        </div>
-                        <div>
-                            <p>City : {item.city} </p>
-                            <input placeholder="City" type="text" name="name" onChange={(e)=>setCity(e.target.value)}/>
-                        </div>
-                        <hr />
-                        <h4>Card Details</h4>
-                        <div className="card-details">
-                        <div>
-                            <p>Card Number : {item.cardNumber} </p>
-                            <input type="text" placeholder="Enter Your Card Number"  value={number} /*maxLength={19} onBlur={checkNumberVarible} */ onChange={handleChangeNumber}  />
-                        </div>
-                        <div>
-                            <p>Card Name : {item.cardName}</p>
-                            <input type="text" placeholder="Enter Your Name" value={cardName} onChange={(e)=>setCardName(e.target.value)} /* value={userName} *//>
-                        </div>
-                        <div className="dateandcvv-box">
-                            <p>Expire Date : {item.cardExpDate}</p>
-                            <input type="text" placeholder="Enter Expire Date"  value={date} onChange={handleChangeDate}/* onBlur={checkExpireVariable} */  />
-                        </div>
-                        <div>
-                            <p>Card CVV : {item.cardCvv}</p>
-                            <input type="text" placeholder="Enter Cvv"  value={cvv} onChange={handleChangeCvv}/* onBlur={checkCvvVariable} */ />
-                        </div>
-                        <div>
-                            <p>Card Vendor : {item.cardVendor}</p>
-                            <input type="text" name="vendor" id="vendor" value={vendor} onChange={(e)=>setVendor(e.target.value)}/>
-                            
-                        </div>
-                        </div>
-                        </div>
-                            )
-                        })}
-                    <button>Submit</button>
-                    </form> 
+                    </div>
                 </div>
             </div>
             

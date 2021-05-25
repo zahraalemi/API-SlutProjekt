@@ -9,7 +9,6 @@ export const getProducts = async (req,res)=>{
         const productName = item.data().name;
         const productCategory = item.data().category;
         const productPrice = item.data().price;
-        const productImage = item.data().image;
         const productDescription = item.data().description;
         const productCoverImage = item.data().coverImage;
         productsArray.push({
@@ -17,7 +16,6 @@ export const getProducts = async (req,res)=>{
             category : productCategory,
             price : productPrice,
             description: productDescription,
-            images : productImage,
             coverimage : productCoverImage
         })
     })
@@ -31,7 +29,6 @@ export const getCategory = async (req,res)=>{
             const productName = item.data().name;
             const productCategory = item.data().category;
             const productPrice = item.data().price;
-            const productImage = item.data().image;
             const productCoverImage = item.data().coverImage;
             const productDescription = item.data().description;
         productsArray.push({
@@ -39,7 +36,6 @@ export const getCategory = async (req,res)=>{
             category : productCategory,
             price : productPrice,
             description: productDescription,
-            images : productImage,
             coverimage : productCoverImage
         })
         }
@@ -55,7 +51,6 @@ export const getOneProduct = async (req, res) =>{
             const productName = item.data().name;
             const productCategory = item.data().category;
             const productPrice = item.data().price;
-            const productImage = item.data().image;
             const productCoverImage = item.data().coverImage;
             const productDescription = item.data().description;
             const productQty = item.data().productQty
@@ -64,7 +59,6 @@ export const getOneProduct = async (req, res) =>{
                 category : productCategory,
                 price : productPrice,
                 description: productDescription,
-                images : productImage,
                 coverimage : productCoverImage,
                 Qty: productQty
             })

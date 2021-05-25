@@ -1,8 +1,9 @@
 import React,{ useState } from "react";
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 const SignUp = () =>{
+    let {userId} = useParams();
     let history = useHistory();
     const [mail,setMail] = useState();
     const [pass,setPass] = useState();
@@ -18,8 +19,8 @@ const SignUp = () =>{
             confirmPassword: repass,
             handle:handle
         }).then((res)=>{
-            console.log(res.data);
-            history.push("/profile");
+            userId = res.data.token;
+            history.push(`/profile/${userId}`);
         }).catch((err)=>{
             console.log(err.response.data)
         })
@@ -28,26 +29,28 @@ const SignUp = () =>{
 return(
     <div>
         <div className="middle-box">
-            <div className="left-box" style={{backgroundImage: "url(/images/basket.jpg)"}}></div>
+            <div className="left-box" style={{backgroundImage: "url(/images/login.jpg)"}}></div>
             <div className="right-box">
             
-                <h2>Login</h2>
-                <form onSubmit={signUp}>
-                    <div>
-                        <input placeholder="Enter Your Email" type="text" name="email" onChange={(e)=>setMail(e.target.value)}/>
-                    </div>
-                    <div>
-                        <input placeholder="Enter Your Password" type="password" name="password" onChange={(e)=>setPass(e.target.value)}/>
-                    </div>
-                    <div>
-                        <input placeholder="Enter Your Confirm Password" type="password" name="repassword" onChange={(e)=>setRepass(e.target.value)}/>
-                    </div>
-                    <div>
-                        <input  placeholder="Enter Handle" type="text" name="handle" onChange={(e)=>setHandle(e.target.value)}/>
-                    </div>
-                
-                    <button>Sign up</button>
-                </form> 
+                <div className="title-page">Sign Up</div>
+                <div className="body-page">
+                    <form onSubmit={signUp}>
+                        <div>
+                            <input placeholder="Enter Your Email" type="text" name="email" onChange={(e)=>setMail(e.target.value)}/>
+                        </div>
+                        <div>
+                            <input placeholder="Enter Your Password" type="password" name="password" onChange={(e)=>setPass(e.target.value)}/>
+                        </div>
+                        <div>
+                            <input placeholder="Enter Your Confirm Password" type="password" name="repassword" onChange={(e)=>setRepass(e.target.value)}/>
+                        </div>
+                        <div>
+                            <input  placeholder="Enter Handle" type="text" name="handle" onChange={(e)=>setHandle(e.target.value)}/>
+                        </div>
+                    
+                        <button className="btn">Sign up</button>
+                    </form> 
+                </div>
             </div>
             
         </div>

@@ -21,7 +21,7 @@ export const signUp = (req,res) =>{
     })
     .then((data) =>{
       userId = data.user.uid;
-      return data.user.getIdToken();
+      return data.user.uid;
     })
     .then((idToken) => {
       token = idToken;
@@ -31,7 +31,7 @@ export const signUp = (req,res) =>{
         createDate: new Date().toISOString(),
         userId
       };
-      return users.doc(newUser.handle).set(userCredentials)
+      return users.doc(userId).set(userCredentials)
     
     })
     .then(() =>{
@@ -54,7 +54,7 @@ export const login = (req,res)=>{
   };
   firebase.auth().signInWithEmailAndPassword(user.email, user.password)
   .then(data =>{
-    return data.user.getIdToken();
+    return data.user.uid;
   })
   .then(token=>{
     return res.json({ token });
@@ -70,7 +70,8 @@ export const login = (req,res)=>{
   })
 }
 export const userDetails = async (req,res) =>{
-     const user = await users.get();
+    
+    const user = await users.get();
     const userArray = [];
     user.forEach(item =>{
       if(req.params.userId == item.data().userId){
@@ -78,11 +79,11 @@ export const userDetails = async (req,res) =>{
         const userName = item.data().name;
         const userAddress = item.data().address;
         const userCity = item.data().city;
-        const userCardNumber = item.data().cardNo;
-        const userCardName = item.data().cardName;
-        const userCardExpDate = item.data().expCard;
-        const userCardCvv = item.data().cvvCard;
-        const userCardVendor = item.data().vendorCard;
+        const userCardNumber = item.data().cardNumber;
+        const userCardName = item.data().cardname;
+        const userCardExpDate = item.data().carddate;
+        const userCardCvv = item.data().cardcvv;
+        const userCardVendor = item.data().cardvendor;
         userArray.push({
           email: userEmail,
           name: userName,
@@ -101,12 +102,13 @@ export const userDetails = async (req,res) =>{
 }
 
 export const addUserDetails = async (req,res) =>{
-   console.log(req.params.userId)
-  
-/* 
-    const id = req.params.id;
+
+    const id = req.params.userId;
+    console.log(id)
     const newDetails = req.body;
+    console.log(newDetails)
     const user = users.doc(id);
     await user.update(newDetails)
-    res.send(`Taske Updated`) */
+
+    res.send(`Taske Updated`) 
 }

@@ -1,5 +1,8 @@
 import express from 'express';
 import productsRotes from './routes/routes.js';
+
+import helmet from 'helmet';
+
 /* import admin from 'firebase-admin';
 import jsonData from './serviceaccountkey.js';
 admin.initializeApp({
@@ -11,8 +14,10 @@ admin.initializeApp({
 const app = express();
 const PORT = 6060;
 
+app.use(express.json());
 
-app.use(express.json())
+app.use(helmet());
+
 
 app.get("/",(req,res)=>{
     res.end("Start Page")
