@@ -3,13 +3,6 @@ import productsRotes from './routes/routes.js';
 
 import helmet from 'helmet';
 
-/* import admin from 'firebase-admin';
-import jsonData from './serviceaccountkey.js';
-admin.initializeApp({
-    credential: admin.credential.cert(jsonData),
-    databaseURL : "https://webshopapi-8f487.firebaseio.com/"
-  }); */
-
 
 const app = express();
 const PORT = 6060;

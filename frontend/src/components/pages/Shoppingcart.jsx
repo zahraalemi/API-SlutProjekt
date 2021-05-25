@@ -2,6 +2,8 @@ import React,{useState,useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faMinusCircle,faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
+import{ motion } from "framer-motion";
+
 
 const ShoppingCart =() =>{
     
@@ -58,7 +60,8 @@ const ShoppingCart =() =>{
     
 
     return(
-        <div>
+        <motion.div initial={{ opacity : 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+
             <div className="middle-box">
                 <div className="left-box" style={{backgroundImage: "url(/images/basket.jpg)"}}></div>
                 <div className="right-box">
@@ -134,7 +137,7 @@ const ShoppingCart =() =>{
                 </div>
             </div>
             
-        </div>
+        </motion.div>
     )
 }
 

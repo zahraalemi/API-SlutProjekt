@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import {useParams, useHistory} from 'react-router-dom';
+import{ motion } from "framer-motion";
+
 
 const SingleProduct = () =>{
     const {name} = useParams();
@@ -44,8 +46,8 @@ const SingleProduct = () =>{
     //let product = products.products.find(x => x.name === props.match.params.name)
      
     return(
-        <div>
-            {products && products.map((item,i) =>{
+        <motion.div initial={{ opacity : 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+        {products && products.map((item,i) =>{
                             return(
             <div className="middle-box" key={i} >
                 <div className="left-box" style={{backgroundImage: `url(${item.coverimage})`}}></div>
@@ -76,7 +78,7 @@ const SingleProduct = () =>{
              )
             })}
             
-        </div>
+        </motion.div>
     )
 }
 export default SingleProduct;

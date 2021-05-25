@@ -299,6 +299,10 @@ input{
   color: white;
   border: teal;
 }
+
+.btn:disabled{
+  background-color: #a5a5a5e6;
+}
 .cart-number{
   position: absolute;
   color: white;
@@ -339,7 +343,7 @@ input{
 .card-name{
   text-transform: uppercase;
   padding-top: 15px;
-  font-size: 1.4rem;
+  font-size: 1rem;
 
 }
 .date-cvv{

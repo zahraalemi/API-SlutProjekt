@@ -1,9 +1,10 @@
 import React,{ useState,useEffect } from "react";
 import axios from "axios";
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import{ motion } from "framer-motion";
+
 
 const Profile = () =>{
-    let history = useHistory();
     let {userId} = useParams();
     let [user, setUser] = useState();
     useEffect(()=>{
@@ -32,12 +33,7 @@ const Profile = () =>{
             cardcvv: cvv,
             cardvendor: vendor
         })
-        /* .then((res)=>{
-            console.log(res.data);
-            history.push("/");
-        }).catch((err)=>{
-            console.log(err)
-        }) */
+        
     
     }
     const handleChangeNumber = (e) => {
@@ -66,8 +62,8 @@ const Profile = () =>{
     } 
     }
     return (
-        <div>
-            <div className="middle-box">
+        <motion.div initial={{ opacity : 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+        <div className="middle-box">
                 <div className="left-box" style={{backgroundImage: "url(/images/basket.jpg)"}}></div>
                 <div className="right-box">
                     <div className="title-page">Profile</div>
@@ -80,19 +76,19 @@ const Profile = () =>{
                                             
                                             <div className="personla-details">
                                                 <div><b>Email :</b> {item.email}</div>
-                                                <p><b>Name :</b> {item.name} </p>
-                                                <p><b>Address : </b>{item.address}</p>
-                                                <p><b>City : </b>{item.city} </p>
+                                                <p><b>Name :</b> {item.name == null ? "-----" : item.name} </p>
+                                                <p><b>Address : </b>{item.address == null ? "-----" : item.address}</p>
+                                                <p><b>City : </b>{item.city == null ? "-----" : item.city} </p>
                                             </div>
                                             <div className="card-details-box">
-                                                <p className="card-number"> {item.cardNumber} </p>
-                                                <p className="card-name">{item.cardName}</p>
+                                                <p className="card-number"> {item.cardNumber == null ? "**** **** **** ****" : item.cardNumber} </p>
+                                                <p className="card-name">{item.cardName == null ? "your name" : item.cardName}</p>
                                                 <p className="date-cvv">
                                                     <p>
-                                                    EXP : {item.cardExpDate}</p>
-                                                    <p>CVV : {item.cardCvv}</p>
+                                                     {item.cardExpDate == null ? "MM/YY" : item.cardExpDate}</p>
+                                                    <p> {item.cardCvv  == null ? "CVV" : item.cardCvv}</p>
                                                 </p>    
-                                                <p>Vendor : {item.cardVendor}</p>
+                                                <p> {item.cardVendor == null ? "Bank Card" : item.cardVendor}</p>
                                                 
                                             </div>
                                         </div>
@@ -108,8 +104,7 @@ const Profile = () =>{
                                         <input placeholder="Change Name" type="text" name="name" onChange={(e)=>setName(e.target.value)}/>
                                     </div>
                                     <div>
-                                    
-                                        <textarea placeholder="Change Address" type="text" name="address" onChange={(e)=>setAddress(e.target.value)}/>
+                                        <input placeholder="Change Address" type="text" name="address" onChange={(e)=>setAddress(e.target.value)}/>
                                     </div>
                                     <div>
                                         
@@ -149,7 +144,7 @@ const Profile = () =>{
                 </div>
             </div>
             
-        </div>
+        </motion.div>
     
     )
 }

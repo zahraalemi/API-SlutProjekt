@@ -2,6 +2,8 @@ import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
+import{ motion } from "framer-motion";
+
 
 
 const Products = () =>{
@@ -12,7 +14,8 @@ const Products = () =>{
     .then(res => setProducts(res.data))
     },[])
 return(
-    <div>
+    <motion.div initial={{ opacity : 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+
         <div className="middle-box">
             <div className="left-box" style={{backgroundImage: "url(/images/skateboard.jpg)"}}>
                 <div className="title-box">
@@ -41,7 +44,7 @@ return(
                 </div>
             </div>
         </div>
-    </div>
+    </motion.div>
 )
 }
 

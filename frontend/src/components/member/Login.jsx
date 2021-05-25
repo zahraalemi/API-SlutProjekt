@@ -1,6 +1,7 @@
 import React,{ useState } from "react";
 import axios from 'axios';
 import { useHistory, useParams, Link } from 'react-router-dom';
+import{ motion } from "framer-motion";
 
 const SignUp = () =>{
     let history = useHistory();
@@ -18,8 +19,7 @@ const SignUp = () =>{
             password: pass,
         }).then((res)=>{
             
-            userId = res.data.token
-            console.log(userId.token)
+            userId = res.data.id
             history.push(`/profile/${userId}`);
         }).catch((err)=>{
             console.log(err.response.data);
@@ -29,7 +29,7 @@ const SignUp = () =>{
     }
     
 return(
-    <div>
+    <motion.div initial={{ opacity : 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
        
         <div className="middle-box">
             <div className="left-box" style={{backgroundImage: "url(/images/login.jpg)"}}></div>
@@ -53,7 +53,7 @@ return(
             </div>
         </div>
         
-    </div>
+    </motion.div>
 )
 }
 export default SignUp

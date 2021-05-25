@@ -2,6 +2,8 @@ import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import{ motion } from "framer-motion";
+
 
 
 const ProductByCategory = () =>{
@@ -12,7 +14,8 @@ const ProductByCategory = () =>{
         .then(res => setProducts(res.data))
     },[category])
 return(
-    <div>
+    <motion.div initial={{ opacity : 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+
         <div className="middle-box">
             <div className="left-box" style={{backgroundImage: "url(/images/slide1.jpg)"}}></div>
             <div className="right-box">
@@ -41,7 +44,7 @@ return(
 
 
         
-    </div>
+    </motion.div>
 )
 }
 

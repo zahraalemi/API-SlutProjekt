@@ -16,7 +16,7 @@ const Header = () =>{
      <div className="header">
          <div className="left-header">
              <div className="logo">
-                 <Link to="/"><img className="sinus-logo" src="images/sinus-logo-landscape.svg" alt="" /></Link>
+                 <Link to="/"><img className="sinus-logo" src="/images/sinus-logo-landscape.svg" alt="" /></Link>
              </div>
          </div>
          <div className="menu">

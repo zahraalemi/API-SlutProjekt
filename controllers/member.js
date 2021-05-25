@@ -7,26 +7,19 @@ export const signUp = (req,res) =>{
       email: req.body.email,
       password: req.body.password,
       confirmPassword: req.body.confirmPassword,
-      handle:req.body.handle
     };
     
-    let token, userId;
-    users.doc(newUser.handle).get()
-    .then((doc) =>{
-      if(doc.exists){
-        return res.status(400).json({handle: `this handle is already taken`});
-      }else{
-        return firebase.auth().createUserWithEmailAndPassword(newUser.email, newUser.password)
-        }
-    })
+    let id, userId;
+    
+    firebase.auth().createUserWithEmailAndPassword(newUser.email, newUser.password)
+      
     .then((data) =>{
       userId = data.user.uid;
       return data.user.uid;
     })
-    .then((idToken) => {
-      token = idToken;
+    .then((id) => {
+      id = id;
       const userCredentials = {
-        handle : newUser.handle,
         email : newUser.email,
         createDate: new Date().toISOString(),
         userId
@@ -35,7 +28,7 @@ export const signUp = (req,res) =>{
     
     })
     .then(() =>{
-      return res.status(201).json({ token });
+      return res.status(201).json({ id });
     })
     .catch(err=>{
       if(err.code === "auth/email-already-in-use"){
@@ -56,8 +49,8 @@ export const login = (req,res)=>{
   .then(data =>{
     return data.user.uid;
   })
-  .then(token=>{
-    return res.json({ token });
+  .then(id=>{
+    return res.json({ id });
   })
   .catch(err =>{
     console.log(err);
