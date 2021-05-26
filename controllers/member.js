@@ -17,8 +17,8 @@ export const signUp = (req,res) =>{
       userId = data.user.uid;
       return data.user.uid;
     })
-    .then((id) => {
-      id = id;
+    .then((idToken) => {
+      id = idToken;
       const userCredentials = {
         email : newUser.email,
         createDate: new Date().toISOString(),
@@ -97,11 +97,9 @@ export const userDetails = async (req,res) =>{
 export const addUserDetails = async (req,res) =>{
 
     const id = req.params.userId;
-    console.log(id)
     const newDetails = req.body;
-    console.log(newDetails)
     const user = users.doc(id);
     await user.update(newDetails)
 
-    res.send(`Taske Updated`) 
+    res.send(`User Updated`) 
 }

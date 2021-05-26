@@ -38,6 +38,7 @@ const SignUp = () =>{
             confirmPassword: repass,
         }).then((res)=>{
             userId = res.data.id;
+            console.log(res.data)
             history.push(`/profile/${userId}`);
         }).catch((err)=>{
             setMessage(err.response.data)

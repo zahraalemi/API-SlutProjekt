@@ -23,7 +23,6 @@ const ShoppingCart =() =>{
                    
                     productQty: item.productQty
                 })
-                console.log(products)
             }
            
         })
@@ -40,7 +39,6 @@ const ShoppingCart =() =>{
                 
                 productQty: item.productQty
             })
-            console.log(products)
         }
        
     })
@@ -83,29 +81,7 @@ const ShoppingCart =() =>{
                             <div> total price</div>
                             <div></div>
                     </li>
-                {/*     <li  className="basket-row"> 
-                            
-                                <div>
-                                    <img src="/images/sinus-skateboard-corona.png" alt="" className="image-box-cart"/>
-                                </div>
-                                
-                                <div className="product-name-cart">SkateBoard</div>
-                                <div className="product-price-cart">110:-</div>
-                                <div className="qty-box">
-                                    <button style={{ color : "green"}}>
-                                        <FontAwesomeIcon icon={faPlusCircle} />
-                                    </button>
-                                    <div className="cart-qty">2</div>
-                                    <button  style={{ color : "red"}}><FontAwesomeIcon icon={faMinusCircle} /></button>
-                                    
-                                </div>
-                                <div> 220:-</div>
-                                <button  style={{ color : "red"}}><FontAwesomeIcon icon={faTrashAlt} /></button>
-
-                                
-                            
-                            
-                        </li> */}
+                
                     {products && products.map((item,i) =>{
 
                         return(
@@ -127,7 +103,7 @@ const ShoppingCart =() =>{
                                     
                                 </div>
                                 <div> {item.productQty * item.price}:-</div>
-                                    <button  onClick={() => handleRemove(item.name)} style={{ color : "red"}}><FontAwesomeIcon icon={faTrashAlt} /></button>
+                                    <div><button  onClick={() => handleRemove(item.name)} style={{ color : "red"}}><FontAwesomeIcon icon={faTrashAlt} /></button></div>
                                 
                         </li>
                         )

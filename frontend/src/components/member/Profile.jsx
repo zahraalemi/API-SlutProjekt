@@ -115,18 +115,18 @@ const Profile = () =>{
                                     <div className="card-details">
                                     <div>
                                         
-                                        <input type="text" placeholder="Enter Your Card Number"  value={number} /*maxLength={19} onBlur={checkNumberVarible} */ onChange={handleChangeNumber}  />
+                                        <input type="text" placeholder="Enter Your Card Number"  value={number}  onChange={handleChangeNumber}  />
                                     </div>
                                     <div>
                                         
-                                        <input type="text" placeholder="Enter Your Name" value={cardName} onChange={(e)=>setCardName(e.target.value)} /* value={userName} *//>
+                                        <input type="text" placeholder="Enter Your Name" value={cardName} onChange={(e)=>setCardName(e.target.value)} />
                                     </div>
                                     <div className="dateandcvv-box">
                                         
-                                        <input type="text" placeholder="Enter Expire Date"  value={date} onChange={handleChangeDate}/* onBlur={checkExpireVariable} */  />
+                                        <input type="text" placeholder="Enter Expire Date"  value={date} onChange={handleChangeDate} />
                                     </div>
                                     <div>
-                                        <input type="text" placeholder="Enter Cvv"  value={cvv} onChange={handleChangeCvv}/* onBlur={checkCvvVariable} */ />
+                                        <input type="text" placeholder="Enter Cvv"  value={cvv} onChange={handleChangeCvv}/>
                                     </div>
                                     <div>
                                         

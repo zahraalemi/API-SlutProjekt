@@ -19,10 +19,10 @@ const SignUp = () =>{
             password: pass,
         }).then((res)=>{
             
-            userId = res.data.id
+            userId = res.data.token
+            console.log(res.data)
             history.push(`/profile/${userId}`);
         }).catch((err)=>{
-            console.log(err.response.data);
             setMessage(err.response.data.error)
             setMessage2(err.response.data.general)
         })

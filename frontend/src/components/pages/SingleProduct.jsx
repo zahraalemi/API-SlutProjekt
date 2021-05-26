@@ -32,19 +32,15 @@ const SingleProduct = () =>{
             productQty: product.productQty
          })
         })
-        console.log(products)
         history.push('/cart')
 
     }
     const handleChange = (e) =>{
         const value = e.target.value;
-        console.log(value)
         setQty(value)
     }
 
-    
-    //let product = products.products.find(x => x.name === props.match.params.name)
-     
+         
     return(
         <motion.div initial={{ opacity : 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
         {products && products.map((item,i) =>{
@@ -61,7 +57,6 @@ const SingleProduct = () =>{
                                     <div className="product-category">Category : {item.category}</div>
                                     <div className="product-price price-box">Price : {item.price} :-</div>
                                     <div className="product-description">Description: {item.description}</div>
-                                    {/* <div className="product-images">Images: {item.images}</div> */}
                                     <div className="qty">
                                     <input  type="number" value={qty} onChange={handleChange}></input>
                                     <button onClick={handleAddToCart} className="addToCart">Add to Cart</button>
