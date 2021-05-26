@@ -9,9 +9,12 @@ const SignUp = () =>{
     const [mail,setMail] = useState();
     const [pass,setPass] = useState();
     const [repass,setRepass] = useState();
+    
     const [message,setMessage] = useState('');
     const [message2,setMessage2] = useState('');
     const [isActive,setIsActive ] = useState(true);
+    
+
 
     const handleCheckEmail = (e) =>{
         if(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(e.target.value)){
@@ -36,12 +39,16 @@ const SignUp = () =>{
             email: mail,
             password: pass,
             confirmPassword: repass,
+            /* handle:handle */
+
         }).then((res)=>{
             userId = res.data.id;
             console.log(res.data)
             history.push(`/profile/${userId}`);
         }).catch((err)=>{
-            setMessage(err.response.data)
+            console.log(err.response.data)
+            setMessage(err.response.data.email)
+            setMessage2(err.response.data.error)
         })
     
     }
@@ -66,6 +73,7 @@ return(
                         <div>
                             <input placeholder="Enter Your Confirm Password" type="password" name="repassword" onBlur={handleConfirmPass} onChange={(e)=>setRepass(e.target.value)}/>
                         </div>
+                        
                         
                     
                         <button className="btn" disabled={isActive}>Sign up</button>

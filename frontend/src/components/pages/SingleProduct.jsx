@@ -65,7 +65,6 @@ const SingleProduct = () =>{
                                 </div>
                         
                             </li> 
-                           
                     </ul>
                     </div>
                 </div>

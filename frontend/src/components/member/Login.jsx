@@ -7,6 +7,7 @@ const SignUp = () =>{
     let history = useHistory();
     const [mail,setMail] = useState();
     const [pass,setPass] = useState();
+
     const [message,setMessage] = useState('');
     const [message2,setMessage2] = useState('');
     let {userId} = useParams()
@@ -19,7 +20,7 @@ const SignUp = () =>{
             password: pass,
         }).then((res)=>{
             
-            userId = res.data.token
+            userId = res.data.id
             console.log(res.data)
             history.push(`/profile/${userId}`);
         }).catch((err)=>{

@@ -5,7 +5,7 @@ import helmet from 'helmet';
 
 
 const app = express();
-const PORT = 6060;
+const PORT = 3030;
 
 app.use(express.json());
 
